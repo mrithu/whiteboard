@@ -61,4 +61,27 @@ def display_palette():
     
 display_palette()
 
+def locate_xy(work):
+    global current_x, current_y
+
+    current_x = work.x
+    current_y = work.y
+
+def addLine(work):
+    global current_x, current_y
+
+    canvas.create_line((current_x,current_y,work.x,work.y),width=get_current_value(),fill=color,capstyle=ROUND,smooth=TRUE)
+    current_x,current_y = work.x,work.y
+
+def show_color(new_color):
+    global color
+    color=new_color
+
+def new_canvas():
+    canvas.delete('all')
+    display_palette
+    
+canvas.bind('<Button-1>',locate_xy)
+canvas.bind('<B1-Motion>',addLine)
+
 root.mainloop()
